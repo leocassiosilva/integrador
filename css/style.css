@@ -1,0 +1,26 @@
+body{
+	background-color:white;
+}
+
+.cadastro-container{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+h3{
+	text-align: center;
+}
+
+
+
+
+/* LOGIN e cadastro*/
+#cad{
+	border-radius: 10px;
+	border-color: blue;
+	box-shadow: 0 5px 8px 0 #87CEEB, 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+	background-color: #fff;	
+}
+
+
+
+  
