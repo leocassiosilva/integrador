@@ -4,16 +4,13 @@ class Impressao {
     private $nome;
     private $quantidade;
     private $tipo;
-    //private $turno; 
-    //private $curso;
-    private $ano;
     private $status; 
     private $data_necessita;
     private $lado; 
     private $id_usuario;   
     private $data_solicitacao;
-
-
+    private $caminho;
+    private $turma;  
 
 
     function getNome(){
@@ -28,21 +25,11 @@ class Impressao {
         return $this->tipo; 
     }
 
-    function getTurno(){
-        return $this->turno; 
-    }
-
-    function getAno(){
-        return $this->ano;
-    }
 
     function getStatus(){
         return $this->status; 
     }
 
-    function getCurso(){
-        return $this->curso; 
-    }
     
     function getData_necessita(){
         return $this->data_necessita;
@@ -58,6 +45,16 @@ class Impressao {
         return $this->data_solicitacao; 
     }
 
+    function getCaminho(){
+        return $this->caminho; 
+    }
+
+     function getTurma(){
+        return $this->turma; 
+    }    
+
+
+
 /**Funções sets */
     function setNome($nome)
     {
@@ -71,18 +68,6 @@ class Impressao {
 
     function setTipo($tipo){
         $this->tipo = $tipo;
-    }
-
-    function setTurno($turno){
-        $this->turno = $turno;
-    }
-
-    function setCurso($curso){
-        $this->curso = $curso;
-    }
-
-    function setAno($ano){
-        $this->ano = $ano; 
     }
 
     function setStatus($status){
@@ -103,5 +88,14 @@ class Impressao {
     function setData_solicitacao($data_solicitacao){
         $this->data_solicitacao = $data_solicitacao;
     }
+
+
+    function setCaminho($caminho){
+        $this->caminho = $caminho;
+    }
+
+    function setTurma($turma){
+        $this->turma = $turma;
+    }    
 }
 ?>

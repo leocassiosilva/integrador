@@ -5,7 +5,7 @@
 /*Fução para verificar se o usuario colocou o email correto!*/
 $(function () {
     $('#btnCadastro').on("click", function () {
-        var usuario = $('#inputemail').val();
+        var usuario = $('#email').val();
         resultado = usuario.split("@");
 
         var result = resultado [1].split(".");  

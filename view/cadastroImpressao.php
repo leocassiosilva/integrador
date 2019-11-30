@@ -28,7 +28,7 @@ $conexao = new Conexao();
 </head>
 
 <body>
-    <form id="cadastroImpressao" class="form" action="../control/controleImpressao.php" method="post">
+    <form id="cadastroImpressao" class="form" method="post">
         <div class="form-row">
 
             <div class="form-group col-md-8">
@@ -73,7 +73,7 @@ $conexao = new Conexao();
                 <div class="form-group col-md-3">
                     <label>Curso</label>
                     <select ame="id_curso" id="id_curso" class="form-control">
-                        <option value="">Escolha o Curso</option>
+                        <option value="">Turma</option>
                         <?php
                         $query = "SELECT id_curso, nome FROM curso";
                         $result = mysqli_query($conexao->getCon(), $query); //Conectando ao banco

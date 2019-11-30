@@ -26,11 +26,11 @@
                             <h3 class="panel-title"></i> Login</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="control/controleLogin.php" method="post">
+                            <form action="control/controleLogin.php" method="post" id="login-form">
 
                                 <div class="form-group col-md-12">
                                     <label class="text-info">Email</label>
-                                    <input type="email" class="form-control" id="inputemail" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                     <p id="menssagem"></p>
                                 </div>
 
@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <button type="submit" class="btn btn-success" id="btnCadastro">Cadastrar</button>
+                                    <button type="submit" class="btn btn-success" id="btnEntrar">Login</button>
                                 </div>
                                 <div class="row">
 							<div class="col-5">
@@ -62,7 +62,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../js/cadadastroProfessor.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </body>
 
 </html>
