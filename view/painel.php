@@ -74,7 +74,7 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
                             <div class="col col-xs-6 text-right">
                                     
                                     <div class="pull-right">
-                <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalcad"><i class="glyphicon glyphicon-plus"></i></button>
+                <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalcad"><i class="glyphicon glyphicon-plus"> Solicitar</i></button>
 
                             </div>
                         </div>
@@ -104,7 +104,7 @@ on(turma.id_ano = ano.id_ano)
 inner join turno
 on(turma.id_turno = turno.id_turno)
 
-WHERE impressao.id_usuario = usuario.id_usuario 
+WHERE (impressao.id_usuario = $id_usuario) 
 ORDER BY impressao.data_necessita ASC";
                         $resultado_impressao = mysqli_query($conexao->getCon(), $sql);
                         ?>
