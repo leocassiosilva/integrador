@@ -72,193 +72,199 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
                                 <h3 class="panel-title">Solicitações</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
-                                    
-                                    <div class="pull-right">
-                <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalcad"><i class="glyphicon glyphicon-plus"> Solicitar</i></button>
 
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalcad"><i class="glyphicon glyphicon-plus"> Solicitar</i></button>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <?php
+                        <div class="table-responsive">
+                            <?php
                         //consultar no banco de dados
-                        $sql = "SELECT impressao.id_impressao, impressao.data_necessita, impressao.quantidade 
-as qtd_impressao, impressao.nome as nome_impressao, usuario.nome as nome_usuario, 
-lado.nome as nome_lado, tipo_atividade.nome as nome_atividade, 
-curso.nome as nome_curso, ano.nome as nome_ano, turno.nome as nome_turno, status_impressao.nome as nome_status
-FROM impressao 
-inner join usuario
-on(impressao.id_usuario = usuario.id_usuario)
-inner join lado
-on(impressao.id_lado = lado.id_lado)
-inner join tipo_atividade
-on(impressao.id_tipo = tipo_atividade.id_tipo)
-inner join status_impressao
-on(impressao.id_status = status_impressao.id_status)
-inner join turma
-on(impressao.id_turma = turma.id_turma)
-inner join curso
-on(turma.id_curso = curso.id_curso)
-inner join ano
-on(turma.id_ano = ano.id_ano)
-inner join turno
-on(turma.id_turno = turno.id_turno)
+                            $sql = "SELECT impressao.id_impressao, impressao.data_necessita, impressao.quantidade 
+                            as qtd_impressao, impressao.nome as nome_impressao, usuario.nome as nome_usuario, 
+                            lado.nome as nome_lado, tipo_atividade.nome as nome_atividade, 
+                            curso.nome as nome_curso, ano.nome as nome_ano, turno.nome as nome_turno, status_impressao.nome as nome_status
+                            FROM impressao 
+                            inner join usuario
+                            on(impressao.id_usuario = usuario.id_usuario)
+                            inner join lado
+                            on(impressao.id_lado = lado.id_lado)
+                            inner join tipo_atividade
+                            on(impressao.id_tipo = tipo_atividade.id_tipo)
+                            inner join status_impressao
+                            on(impressao.id_status = status_impressao.id_status)
+                            inner join turma
+                            on(impressao.id_turma = turma.id_turma)
+                            inner join curso
+                            on(turma.id_curso = curso.id_curso)
+                            inner join ano
+                            on(turma.id_ano = ano.id_ano)
+                            inner join turno
+                            on(turma.id_turno = turno.id_turno)
 
-WHERE (impressao.id_usuario = $id_usuario) 
-ORDER BY impressao.data_necessita ASC";
-                        $resultado_impressao = mysqli_query($conexao->getCon(), $sql);
-                        ?>
+                            WHERE (impressao.id_usuario = $id_usuario) 
+                            ORDER BY impressao.data_necessita ASC";
+                            $resultado_impressao = mysqli_query($conexao->getCon(), $sql);
+                            ?>
 
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th >ID</th>
-                                    <th scope="col">Nome Atividade</th>
-                                    <th scope="col">Data Necessita</th>
-                                    <th scope="col">Quantidade</th>
-                                    <th scope="col">Lado</th>
-                                    <th scope="col">Tipo</th>
-                                    <th scope="col">Curso</th>
-                                    <th scope="col">Ano</th>
-                                     <th scope="col">Turno</th>
-                                     <th scope="col">Nome</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th >ID</th>
+                                        <th scope="col">Nome Atividade</th>
+                                        <th scope="col">Data Necessita</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Lado</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Curso</th>
+                                        <th scope="col">Ano</th>
+                                        <th scope="col">Turno</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
                                 //Verificar se encontrou resultado na tabela "usuarios"
-                                if (($resultado_impressao) and ($resultado_impressao->num_rows != 0)) {
-                                    while ($row_impressao = mysqli_fetch_assoc($resultado_impressao)) {
-                                        ?>
-                                        <tr>
-                                            <th> <?php echo $row_impressao['id_impressao'] ?></th>
-                                            <td><?php echo $row_impressao['nome_impressao'] ?></td>
-                                            <td><?php echo $row_impressao['data_necessita'] ?></td>
-                                            <td><?php echo $row_impressao['qtd_impressao'] ?></td>
-                                            <td><?php echo $row_impressao['nome_lado'] ?></td>
-                                            <td><?php echo $row_impressao['nome_atividade'] ?></td>
-                                            <td><?php echo $row_impressao['nome_curso'] ?></td>
-                                            <td><?php echo $row_impressao['nome_ano'] ?></td>
-                                            <td><?php echo $row_impressao['nome_turno'] ?></td>
-                                            <td><?php echo $row_impressao['nome_usuario'] ?></td>
-                                            <td><?php echo $row_impressao['nome_status'] ?></td>
-                                        </tr>
-                                <?php
+                                    if (($resultado_impressao) and ($resultado_impressao->num_rows != 0)) {
+                                        while ($row_impressao = mysqli_fetch_assoc($resultado_impressao)) {
+                                            ?>
+                                            <tr>
+                                                <th> <?php echo $row_impressao['id_impressao'] ?></th>
+                                                <td><?php echo $row_impressao['nome_impressao'] ?></td>
+                                                <td><?php echo $row_impressao['data_necessita'] ?></td>
+                                                <td><?php echo $row_impressao['qtd_impressao'] ?></td>
+                                                <td><?php echo $row_impressao['nome_lado'] ?></td>
+                                                <td><?php echo $row_impressao['nome_atividade'] ?></td>
+                                                <td><?php echo $row_impressao['nome_curso'] ?></td>
+                                                <td><?php echo $row_impressao['nome_ano'] ?></td>
+                                                <td><?php echo $row_impressao['nome_turno'] ?></td>
+                                                <td><?php echo $row_impressao['nome_usuario'] ?></td>
+                                                <td><?php echo $row_impressao['nome_status'] ?></td>
+                                                <td><button type="button" rel="tooltip" class="btn btn-primary btn-just-icon btn-sm" data-original-title="" title="" id="btnEditar">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </button></td>
+                                                <td><button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="" id="btnExcluir">
+                                            <i class="glyphicon glyphicon-trash"></i></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "Nenhum impressao";
                                     }
-                                } else {
-                                    echo "Nenhum impressao";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
+    <!-- Inicio Modal -->
+    <div class="modal fade" id="myModalcad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Cadastrar Impressao</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="cadastroImpressao" class="form" action="../control/controleImpressao.php" method="post" enctype="multipart/form-data">
 
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Nome da Atividade</label>
+                                <input id="nome" name="nome" type="text" placeholder="Prova" class="form-control input-md">
 
-            </div>
-            <!-- Inicio Modal -->
-            <div class="modal fade" id="myModalcad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title text-center" id="myModalLabel">Cadastrar Impressao</h4>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-md-4 control-label">Quantidade</label>
+                                <input id="quantidade" name="quantidade" type="number" placeholder="10" class="form-control input-md">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Data</label>
+                                <input id="data" name="data" type="date" placeholder="DD/MM/AAAA" class="form-control input-md" maxlength="10">
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form id="cadastroImpressao" class="form" action="../control/controleImpressao.php" method="post" enctype="multipart/form-data">
-
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label>Nome da Atividade</label>
-                <input id="nome" name="nome" type="text" placeholder="Prova" class="form-control input-md">
-
-            </div>
-            <div class="form-group col-md-4">
-                <label class="col-md-4 control-label">Quantidade</label>
-                <input id="quantidade" name="quantidade" type="number" placeholder="10" class="form-control input-md">
-            </div>
-            <div class="form-group col-md-4">
-                <label>Data</label>
-                <input id="data" name="data" type="date" placeholder="DD/MM/AAAA" class="form-control input-md" maxlength="10">
-            </div>
-        </div>
 
 
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <label>Tipo de Atividade</label>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="1">
-                    <label class="form-check-label">Atividade Avaliativa</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="2">
-                    <label class="form-check-label">Atividade</label>
-                </div>
-            </div>
-            <p id="tipoAtividade"></p>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Tipo de Atividade</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="1">
+                                    <label class="form-check-label">Atividade Avaliativa</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="2">
+                                    <label class="form-check-label">Atividade</label>
+                                </div>
+                            </div>
+                            <p id="tipoAtividade"></p>
 
-            <div class="form-group col-md-4">
-                <label>Lado</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="lado" id="lado" value="1">
-                    <label class="form-check-label" for="inlineRadio2">Frente</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="lado" id="lado" value="2">
-                    <label class="form-check-label" for="inlineRadio2">Frente e Verso</label>
-                </div>
-            </div>
-            <p id="folha_lado"></p>
-        </div>
+                            <div class="form-group col-md-6">
+                                <label>Lado</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="lado" id="lado" value="1">
+                                    <label class="form-check-label" for="inlineRadio2">Frente</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="lado" id="lado" value="2">
+                                    <label class="form-check-label" for="inlineRadio2">Frente e Verso</label>
+                                </div>
+                            </div>
+                            <p id="folha_lado"></p>
+                        </div>
 
 
-        <div class="form-row">
-            <div>
-                <div class="form-group col-md-3">
-                    <label>Curso</label>
-                    <select name="turma" id="turma" class="form-control">
-                        <option value="">Escolha o Curso</option>
-                        <?php
-                        $query = "SELECT turma.id_turma, curso.nome as curso, turno.nome as turno, ano.nome as ano FROM turma 
-                        INNER JOIN turno on turma.id_turno = turno.id_turno 
-                        INNER JOIN ano on ano.id_ano = turma.id_ano
-                        INNER JOIN curso on curso.id_curso = turma.id_curso";
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label>Curso</label>
+                                <select name="turma" id="turma" class="form-control">
+                                    <option value="">Escolha o Curso</option>
+                                    <?php
+                                    $query = "SELECT turma.id_turma, curso.nome as curso, turno.nome as turno, ano.nome as ano FROM turma 
+                                    INNER JOIN turno on turma.id_turno = turno.id_turno 
+                                    INNER JOIN ano on ano.id_ano = turma.id_ano
+                                    INNER JOIN curso on curso.id_curso = turma.id_curso";
                         $result = mysqli_query($conexao->getCon(), $query); //Conectando ao banco
 
                         while ($row = mysqli_fetch_assoc($result)) { ?>
                             <option value="<?php echo $row['id_turma']; ?>"> <?php echo $row['ano'] . "°" . $row['curso'] . " " . $row['turno']; ?>
                             </option><?php
-                                        }
-                                        ?>
-                    </select>
+                        }
+                        ?></select>
+                    </div>
                 </div>
-            </div>
 
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Arquivo</label>
+                        <input type="file" name="pic" accept=".pdf">
 
-            <div class="form-group col-md-4">
-                <label>Arquivo</label>
-                <input type="file" name="pic" accept=".pdf">
-
-            </div>
-        </div>
-                                <div class="modal-footer">
-                                    <div class="form-row">
-            <div class="form-group col-md-12">
-                <button id="btnSolicitar" name="#btnSolicitar" class="btn btn-success">Solicitar</button>
-                <button id="id_cancelar" name="id_cancelar" class="btn btn-danger">Cancelar</button>
-            </div>
-        </div>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
+            <div class="modal-footer">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button id="btnSolicitar" name="#btnSolicitar" class="btn btn-success">Solicitar</button>
+                        <button id="id_cancelar" name="id_cancelar" class="btn btn-danger">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
 
 
 
@@ -274,13 +280,13 @@ ORDER BY impressao.data_necessita ASC";
 
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 
-    <script type="text/javascript" src="cadastroImpressao.js">
+<script type="text/javascript" src="cadastroImpressao.js">
 
 
-    </script>
+</script>
 
 </body>
 
