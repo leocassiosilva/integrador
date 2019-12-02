@@ -45,8 +45,8 @@ if (isset($_POST['nome']) && isset($_FILES['pic']) && isset($_POST['quantidade']
         $impressao->setId_usuario($id_usuario);
         $impressao->setData_solicitacao($dataSolicitacao);
         $impressao->setCaminho($caminho);
-         echo $impressao->getCaminho();;
         $impressaoDAO->inserirImpressao($impressao);
+        header("Location: ../view/painel.php");
     }
 }
 

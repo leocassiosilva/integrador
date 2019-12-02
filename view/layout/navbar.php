@@ -14,23 +14,29 @@
 </head>
 
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><strong>PROGRAMA</strong></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><strong>PROGRAMA</strong></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a><i class="glyphicon glyphicon-cog" title="" aria-hidden="true"></i> Sua conta</a></li>
-                <li><a><i class="glyphicon glyphicon-off" title="" aria-hidden="true"></i> Sair</a></li>
-            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <?php
+                    if($nivel==2){
+                        echo "<li><a href='cadastroEstagiario.php'><i class='glyphicon glyphicon-cog' title='' aria-hidden='true' ></i> Adicionar Estagiário</a></li>";
+                    }
+                    ?>
+                    <li><a><i class="glyphicon glyphicon-cog" title="" aria-hidden="true" ></i> <?=$logado ?></a></li>
+                    <li><a href="logoff.php"><i class="glyphicon glyphicon-off" title="" aria-hidden="true"></i> Sair</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>

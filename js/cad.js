@@ -83,7 +83,7 @@ $(function () {
     })
     .done(function(resposta){
       $("#mensagem").html("Adicionado com sucesso").fadeIn( 300 ).delay( 1900 ).fadeOut( 400 );;
-            //window.location.replace("../index.php");
+            window.location.replace("../index.php");
           });
   });
 });

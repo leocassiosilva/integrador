@@ -7,7 +7,7 @@ if ((!isset($_SESSION['email']) == true) && (!isset($_SESSION['senha']) == true)
 
     unset($_SESSION['email']);
     unset($_SESSION['senha']);
-    header('location:login.php');
+    header('Location: ../index.php');
 }
 
 $logado = $_SESSION['email'];
@@ -15,11 +15,11 @@ $nivel = $_SESSION['tipo']; //Usada para pedar o tipo do usario e verificar seu 
 $id_usuario = $_SESSION['id_usuario']; //como que faço paramandar id para a solicitação de impressão ? 
 
 
-if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
-    session_destroy();
-    header('Location:login.php');
-    exit();
-}
+// if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
+//     session_destroy();
+//     header("Location: ../index.php");
+//     exit();
+// }
 ?>
 
 
@@ -27,6 +27,7 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
 <html>
 
 <head>
+
     <title>Cadastros de Solicitações</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,8 +55,13 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a><i class="glyphicon glyphicon-cog" title="" aria-hidden="true"></i> Sua conta</a></li>
-                    <li><a><i class="glyphicon glyphicon-off" title="" aria-hidden="true"></i> Sair</a></li>
+                    <?php
+                    if($nivel==2){
+                        echo "<li><a href='cadastroEstagiario.php'><i class='glyphicon glyphicon-cog' title='' aria-hidden='true' ></i> Adicionar Estagiário</a></li>";
+                    }
+                    ?>
+                    <li><a><i class="glyphicon glyphicon-cog" title="" aria-hidden="true" ></i> <?=$logado ?></a></li>
+                    <li><a href="logoff.php"><i class="glyphicon glyphicon-off" title="" aria-hidden="true"></i> Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -74,8 +80,7 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
                             <div class="col col-xs-6 text-right">
 
                                 <div class="pull-right">
-                                    <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalcad"><i class="glyphicon glyphicon-plus"> Solicitar</i></button>
-
+                                    <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalcad"><i class="glyphicon glyphicon-plus" style="width: 70px; height: 20px"> Solicitar</i></button>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +117,6 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th >ID</th>
                                         <th scope="col">Nome Atividade</th>
                                         <th scope="col">Data Necessita</th>
                                         <th scope="col">Quantidade</th>
@@ -134,7 +138,6 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
                                         while ($row_impressao = mysqli_fetch_assoc($resultado_impressao)) {
                                             ?>
                                             <tr>
-                                                <th> <?php echo $row_impressao['id_impressao'] ?></th>
                                                 <td><?php echo $row_impressao['nome_impressao'] ?></td>
                                                 <td><?php echo $row_impressao['data_necessita'] ?></td>
                                                 <td><?php echo $row_impressao['qtd_impressao'] ?></td>
@@ -256,7 +259,8 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <button id="btnSolicitar" name="#btnSolicitar" class="btn btn-success">Solicitar</button>
-                        <button id="id_cancelar" name="id_cancelar" class="btn btn-danger">Cancelar</button>
+                        <button type="button" id="id_cancelar" name="id_cancelar" 
+                        class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -283,8 +287,8 @@ if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 
-<script type="text/javascript" src="cadastroImpressao.js">
-
+<script type="text/javascript">
+$("#id_cancelar").modal().hide();
 
 </script>
 
