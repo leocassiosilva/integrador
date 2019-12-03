@@ -1,3 +1,26 @@
+<?php
+include("../dao/Conexao.php");
+$conexao = new Conexao();
+
+
+if ((!isset($_SESSION['email']) == true) && (!isset($_SESSION['senha']) == true)) {
+
+    unset($_SESSION['email']);
+    unset($_SESSION['senha']);
+    header('Location: ../index.php');
+}
+
+$logado = $_SESSION['email'];
+$nivel = $_SESSION['tipo']; //Usada para pedar o tipo do usario e verificar seu nivel de acesso 
+$id_usuario = $_SESSION['id_usuario']; //como que faço paramandar id para a solicitação de impressão ? 
+
+
+// if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
+//     session_destroy();
+//     header("Location: ../index.php");
+//     exit();
+// }
+?>
 <!DOCTYPE html>
 <html>
 

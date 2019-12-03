@@ -68,7 +68,7 @@ $(function () {
     var email = $("#email").val();
     var matricula = $("#matricula").val();
     var senha = $("#senha").val();
-    var tipo = 1; 
+    var tipo = 3; 
 
     $.ajax({
       method: "POST",
