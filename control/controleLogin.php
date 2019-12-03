@@ -26,6 +26,7 @@ if (empty($recebe)){
       $_SESSION['email'] = $usuario->getEmail();
       $_SESSION['tipo'] = $usuario->getTipo();
       $_SESSION['id_usuario'] = $usuario->getId_usuario();
+      $_SESSION['nome'] = $usuario->getNome();
       $_SESSION['status'] = 'LOGADO';
       //echo $usuario->getId_usuario();
     header('Location: ../view/painel.php');
