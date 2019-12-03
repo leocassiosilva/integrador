@@ -1,26 +1,13 @@
 <?php
-include("../dao/Conexao.php");
-$conexao = new Conexao();
-
-
-if ((!isset($_SESSION['email']) == true) && (!isset($_SESSION['senha']) == true)) {
-
-    unset($_SESSION['email']);
-    unset($_SESSION['senha']);
-    header('Location: ../index.php');
-}
-
-$logado = $_SESSION['email'];
-$nivel = $_SESSION['tipo']; //Usada para pedar o tipo do usario e verificar seu nivel de acesso 
-$id_usuario = $_SESSION['id_usuario']; //como que faço paramandar id para a solicitação de impressão ? 
-
-
-// if (!isset($_SESSION['email']) or ($_SESSION['tipo']) < $nivel) {
-//     session_destroy();
-//     header("Location: ../index.php");
-//     exit();
-// }
-?>
+session_start();
+if ($_SESSION['status'] != 'LOGADO') {
+    header("Location: ../index.php"); // Chamar um form de login por exemplo.
+  } else {
+    $id_usuario = $_SESSION['id_usuario'];
+    $logado = $_SESSION['email'];
+    $nivel = $_SESSION['tipo'];
+  }
+  ?>
 <!DOCTYPE html>
 <html>
 
@@ -30,7 +17,7 @@ $id_usuario = $_SESSION['id_usuario']; //como que faço paramandar id para a sol
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -47,17 +34,18 @@ $id_usuario = $_SESSION['id_usuario']; //como que faço paramandar id para a sol
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>PROGRAMA</strong></a>
+                <a class="navbar-brand" href="painel.php"><strong>PRINTIF</strong></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     if($nivel==2){
-                        echo "<li><a href='cadastroEstagiario.php'><i class='glyphicon glyphicon-cog' title='' aria-hidden='true' ></i> Adicionar Estagiário</a></li>";
+                        echo "<li><a href='cadastroEstagiario.php'><i class='glyphicon glyphicon-plus   
+                        ' title='' aria-hidden='true' ></i> Adicionar Estagiário</a></li>";
                     }
                     ?>
-                    <li><a><i class="glyphicon glyphicon-cog" title="" aria-hidden="true" ></i> <?=$logado ?></a></li>
+                    <li><a><i title="" aria-hidden="true"> E-mail:</i> <?=$logado ?></a></li>
                     <li><a href="logoff.php"><i class="glyphicon glyphicon-off" title="" aria-hidden="true"></i> Sair</a></li>
                 </ul>
             </div>

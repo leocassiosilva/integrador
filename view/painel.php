@@ -226,14 +226,15 @@ $nome = $_SESSION['nome'];
                                                     <i class='glyphicon glyphicon-print'></i>
                                                     </button></td>";
                                                 }else {
-                                                    echo " <td><button type='button' rel='tooltip' class='btn btn-primary btn-just-icon btn-sm'data-original-title='' title='' id='btnEditar'>
+                                                    echo " <td><button type='button' rel='tooltip' class='btn btn-primary btn-just-icon btn-sm botaoEditar' data-original-title='' title='' id='btnEditar'>
                                                     <i class='glyphicon glyphicon-pencil'></i>
                                                     </button></td>";
                                                 }
                                                 ?>                                            
 
-                                                <td><button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="" id="btnExcluir">
-                                                    <i class="glyphicon glyphicon-trash"></i></td>
+                                                <td><button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="" id="btnExcluir" onclick="location.href='excluirImpressao.php?id=<?php echo $row_impressao['id_impressao'] ?>'">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </button></td>
 
                                                     <?php
                                                     if ($nivel == 2 || $nivel == 3) {
@@ -424,7 +425,7 @@ $nome = $_SESSION['nome'];
   }
 }
 });
-$('#btnEditar').on("click", function () {
+$('.botaoEditar').on("click", function () {
         alert("Estamos em construção desse requisito. Aguarde!!")
     });
 });
