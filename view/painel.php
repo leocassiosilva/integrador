@@ -29,14 +29,22 @@ $nome = $_SESSION['nome'];
 
 <head>
 
-    <title>Cadastros de Solicitações</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script src="../js/bootstrap.min.js"></script>
+   <?php
+   if ($nivel == 2 || $nivel == 3) {
+    echo "<title>Solicitações</title>";
+}else {
+    echo "<title>Cadastros de Solicitações</title>";
+}
+?>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -145,6 +153,7 @@ $nome = $_SESSION['nome'];
                                 inner join ano
                                 on(turma.id_ano = ano.id_ano)
                                 inner join turno
+                                on(turma.id_turno = turno.id_turno)
                                 ORDER BY impressao.data_necessita ASC";
                                 $resultado_impressao = mysqli_query($conexao->getCon(), $sql);
                             }if ($nivel == 3) {
@@ -168,6 +177,7 @@ $nome = $_SESSION['nome'];
                                 inner join ano
                                 on(turma.id_ano = ano.id_ano)
                                 inner join turno
+                                on(turma.id_turno = turno.id_turno)
                                 where tipo_atividade.id_tipo = 2
                                 ORDER BY impressao.data_necessita ASC";
                                 $resultado_impressao = mysqli_query($conexao->getCon(), $sql);
@@ -222,6 +232,7 @@ $nome = $_SESSION['nome'];
 
                                                 <?php
                                                 if ($nivel == 2 || $nivel == 3) {
+
                                                     echo " <td><button type='button' rel='tooltip' class='btn btn-primary btn-just-icon btn-sm'data-original-title='' title='' id='btnImprimir'>
                                                     <i class='glyphicon glyphicon-print'></i>
                                                     </button></td>";
@@ -236,102 +247,102 @@ $nome = $_SESSION['nome'];
                                                     <i class="glyphicon glyphicon-trash"></i>
                                                 </button></td>
 
-                                                    <?php
-                                                    if ($nivel == 2 || $nivel == 3) {
-                                                       echo " <td><button type='button' rel='tooltip' class='btn btn-success btn-just-icon btn-sm'data-original-title='' title='' id='btnConfirmar'>
-                                                       <i class='glyphicon glyphicon-check'></i>
-                                                       </button></td>";
-                                                   }
-                                                   ?>
-                                               </tr>
+                                                <?php
+                                                if ($nivel == 2 || $nivel == 3) {
+                                                   echo " <td><button type='button' rel='tooltip' class='btn btn-success btn-just-icon btn-sm'data-original-title='' title='' id='btnConfirmar'>
+                                                   <i class='glyphicon glyphicon-check'></i>
+                                                   </button></td>";
+                                               }
+                                               ?>
+                                           </tr>
 
 
 
 
 
-                                               <?php
-                                           }
-                                       } else {
-                                        echo "Nenhum impressao";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                           <?php
+                                       }
+                                   } else {
+                                    echo "Nenhum impressao";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-    <!-- Inicio Modal -->
-    <div class="modal fade" id="myModalcad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title text-center" id="myModalLabel">Cadastrar Impressao</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="cadastroImpressao" class="form" action="../control/controleImpressao.php" method="post" enctype="multipart/form-data">
 
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label>Nome da Atividade</label>
-                                <input id="nome" name="nome" type="text" placeholder="Prova" class="form-control input-md">
 
+</div>
+<!-- Inicio Modal -->
+<div class="modal fade" id="myModalcad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myModalLabel">Cadastrar Impressao</h4>
+            </div>
+            <div class="modal-body">
+                <form id="cadastroImpressao" class="form" action="../control/controleImpressao.php" method="post" enctype="multipart/form-data">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Nome da Atividade</label>
+                            <input id="nome" name="nome" type="text" placeholder="Prova" class="form-control input-md">
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-4 control-label">Quantidade</label>
+                            <input id="quantidade" name="quantidade" type="number" placeholder="10" class="form-control input-md">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Data</label>
+                            <input id="data" name="data" type="date" placeholder="DD/MM/AAAA" class="form-control input-md" maxlength="10">
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Tipo de Atividade</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tipo" id="tipo" value="1">
+                                <label class="form-check-label">Atividade Avaliativa</label>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label class="col-md-4 control-label">Quantidade</label>
-                                <input id="quantidade" name="quantidade" type="number" placeholder="10" class="form-control input-md">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Data</label>
-                                <input id="data" name="data" type="date" placeholder="DD/MM/AAAA" class="form-control input-md" maxlength="10">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tipo" id="tipo" value="2">
+                                <label class="form-check-label">Atividade</label>
                             </div>
                         </div>
+                        <p id="tipoAtividade"></p>
 
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Tipo de Atividade</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="1">
-                                    <label class="form-check-label">Atividade Avaliativa</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="2">
-                                    <label class="form-check-label">Atividade</label>
-                                </div>
+                        <div class="form-group col-md-6">
+                            <label>Lado</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="lado" id="lado" value="1">
+                                <label class="form-check-label" for="inlineRadio2">Frente</label>
                             </div>
-                            <p id="tipoAtividade"></p>
-
-                            <div class="form-group col-md-6">
-                                <label>Lado</label><br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="lado" id="lado" value="1">
-                                    <label class="form-check-label" for="inlineRadio2">Frente</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="lado" id="lado" value="2">
-                                    <label class="form-check-label" for="inlineRadio2">Frente e Verso</label>
-                                </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="lado" id="lado" value="2">
+                                <label class="form-check-label" for="inlineRadio2">Frente e Verso</label>
                             </div>
-                            <p id="folha_lado"></p>
                         </div>
+                        <p id="folha_lado"></p>
+                    </div>
 
 
-                        <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <label>Curso</label>
-                                <select name="turma" id="turma" class="form-control">
-                                    <option value="">Escolha o Curso</option>
-                                    <?php
-                                    $query = "SELECT turma.id_turma, curso.nome as curso, turno.nome as turno, ano.nome as ano FROM turma 
-                                    INNER JOIN turno on turma.id_turno = turno.id_turno 
-                                    INNER JOIN ano on ano.id_ano = turma.id_ano
-                                    INNER JOIN curso on curso.id_curso = turma.id_curso";
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label>Curso</label>
+                            <select name="turma" id="turma" class="form-control">
+                                <option value="">Escolha o Curso</option>
+                                <?php
+                                $query = "SELECT turma.id_turma, curso.nome as curso, turno.nome as turno, ano.nome as ano FROM turma 
+                                INNER JOIN turno on turma.id_turno = turno.id_turno 
+                                INNER JOIN ano on ano.id_ano = turma.id_ano
+                                INNER JOIN curso on curso.id_curso = turma.id_curso";
                         $result = mysqli_query($conexao->getCon(), $query); //Conectando ao banco
 
                         while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -368,67 +379,7 @@ $nome = $_SESSION['nome'];
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 
-<script type="text/javascript">
- $(document).ready( function() {
-  $('#cadastroImpressao').validate({
-     rules:{ 
-        nome:{ 
-          required: true,
-          minlength: 3
-      },  
-      quantidade:{ 
-          required: true,
-          minlength: 1
-      }, 
-      data:{ 
-          required: true
-      },
-      tipo:{ 
-          required: true
-      },
-      lado:{ 
-          required: true
-      }, 
-       turma:{ 
-          required: true
-      }, 
-      pic:{
-        required: true
-      }
-
-
-  },
-  messages:{
-    nome:{ 
-      required: "O campo nome é obrigatório.",
-      minlength: "Deve conter no mínimo 3 caracteres."
-  },
-  quantidade:{ 
-      required: "O campo nome é obrigatório.",
-      minlength: "Deve conter no mínimo 1 caracteres."
-  },
-  data:{ 
-      required: "O campo nome é obrigatório.",
-      minlength: "dd/mm/aa"
-  }, 
-   tipo:{ 
-      required: "O campo nome é obrigatório.",
-  }, 
-   lado:{ 
-      required: "O campo nome é obrigatório.",
-  },
-  turma:{ 
-      required: "O campo nome é obrigatório.",
-  },
-  pic:{ 
-      required: "O campo nome é obrigatório.",
-  }
-}
-});
-$('.botaoEditar').on("click", function () {
-        alert("Estamos em construção desse requisito. Aguarde!!")
-    });
-});
+<script type="text/javascript" src="../js/cadImpressao.js">
 </script>
 
 </body>
