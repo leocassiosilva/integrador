@@ -65,5 +65,10 @@ if ($consulta == true && $verificarEmail == true) {
     $usuarioDAO->Cadastrar($usuario);
     header('Location: index.php');
 } else {
-    header('Location: ../view/cadastroProfessor.php');
+    if ($usuario->getTipo()  == 1) {
+       header('Location: ../view/cadastroProfessor.php');
+    }else {
+        header('Location: ../view/cadastroEstagiario.php');
+    }
+    
 }

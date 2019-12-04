@@ -29,7 +29,7 @@ if (isset($_POST['nome']) && isset($_FILES['pic']) && isset($_POST['quantidade']
 
         $ext = strtolower(substr($_FILES['pic']['name'], -4)); //Pegando extensão do arquivo
         $nomeArquivo = date("Y.m.d-H.i.s") . $ext; //Definindo um novo nome para o arquivo
-        $diretorio = '../imagens/'; //Diretório para uploads 
+        $diretorio = '../arquivos/'; //Diretório para uploads 
         move_uploaded_file($_FILES['pic']['tmp_name'], $diretorio . $nomeArquivo); //Fazer upload do arquivo
         $caminho = $diretorio . $nomeArquivo;
 

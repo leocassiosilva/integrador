@@ -26,7 +26,7 @@
                             <h3 class="panel-title"></i> Login</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="control/controleLogin.php" method="post" id="login-form">
+                            <form id= "loginform" action="control/controleLogin.php" method="post" id="login-form">
 
                                 <div class="form-group col-md-12">
                                     <label class="text-info">Email</label>

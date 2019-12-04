@@ -46,29 +46,29 @@
   
 });
  
-$(function () {
-    $('#btnCadastro').on("click", function () {
-        var usuario = $('#email').val();
-        resultado = usuario.split("@");
+ $(function () {
+  $('#btnCadastro').on("click", function () {
+    var usuario = $('#email').val();
+    resultado = usuario.split("@");
 
-        var result = resultado [1].split(".");  
+    var result = resultado [1].split(".");  
 
-        if(result[0] == "ifrn" && result[1] == "edu" && result[2] == "br"){
-           alert("Deu Certo!");
-        }else {
-            $("#menssagem").html("Email invalido para o cadastro!"); 
-        } 
-    });
+    if(result[0] == "ifrn" && result[1] == "edu" && result[2] == "br"){
+     alert("Deu Certo!");
+   }else {
+    $("#menssagem").html("Email invalido para o cadastro!"); 
+  } 
+});
 });
 
 
-$(function () {
+ $(function () {
   $("#btnAdicionar").on("click", function() {
     var nome = $("#nome").val();
     var email = $("#email").val();
     var matricula = $("#matricula").val();
     var senha = $("#senha").val();
-    var tipo = 3; 
+    var tipo = 1; 
 
     $.ajax({
       method: "POST",
@@ -82,9 +82,13 @@ $(function () {
       }
     })
     .done(function(resposta){
-      $("#mensagem").html("Adicionado com sucesso").fadeIn( 300 ).delay( 1900 ).fadeOut( 400 );;
-            window.location.replace("../index.php");
-          });
+      alert("1");//Não ta entrando 
+      $("#mensagem").html("Adicionado com sucesso").fadeIn( 300 ).delay( 1900 ).fadeOut( 400 );
+      setTimeout(function(){
+        alert("2");
+        window.location.replace("../index.php");
+      }, 3000);
+    });
   });
 });
 

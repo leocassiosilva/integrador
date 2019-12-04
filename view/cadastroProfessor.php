@@ -39,6 +39,7 @@
 
               <button type="submit" class="btn btn-success" id="btnAdicionar">Cadastrar</button>
             </form>
+            <p id="mensagem"></p>
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ $(document).ready(function(){
         messages:{
             email:{
                 required: "Este campo é obrigatorio"
+                email: "O campo email deve conter um email válido."
             }, 
             senha:{
                 required:"Digite a senha"

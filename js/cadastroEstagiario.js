@@ -45,13 +45,13 @@
 });
   
 });
-$(function () {
+ $(function () {
   $("#btnAdicionar").on("click", function() {
     var nome = $("#nome").val();
     var email = $("#email").val();
     var matricula = $("#matricula").val();
     var senha = $("#senha").val();
-    var tipo = 3; 
+    var tipo = 1; 
 
     $.ajax({
       method: "POST",
@@ -65,9 +65,11 @@ $(function () {
       }
     })
     .done(function(resposta){
-      $("#mensagem").html("Adicionado com sucesso").fadeIn( 300 ).delay( 1900 ).fadeOut( 400 );;
-            window.location.replace("../control/controle.php");
-          });
+      $("#mensagem").html("Adicionado com sucesso").fadeIn( 300 ).delay( 1900 ).fadeOut( 400 );
+      setTimeout(function(){
+        window.location.replace("../view/painel.php");
+      }, 3000);
+    });
   });
 });
 
