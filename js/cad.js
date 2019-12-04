@@ -59,10 +59,7 @@
     $("#menssagem").html("Email invalido para o cadastro!"); 
   } 
 });
-});
 
-
- $(function () {
   $("#btnAdicionar").on("click", function() {
     var nome = $("#nome").val();
     var email = $("#email").val();
@@ -82,10 +79,8 @@
       }
     })
     .done(function(resposta){
-      alert("1");//Não ta entrando 
       $("#mensagem").html("Adicionado com sucesso").fadeIn( 300 ).delay( 1900 ).fadeOut( 400 );
       setTimeout(function(){
-        alert("2");
         window.location.replace("../index.php");
       }, 3000);
     });

@@ -19,7 +19,7 @@ $recebe = $usuarioDAO->login($usuario);
 
 
 if (empty($recebe)){
-    header('Location: index.php');
+    header('Location: ../index.php');
 }else{
       
       // Salva os dados encontrados na sessão
